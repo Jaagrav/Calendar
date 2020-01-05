@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calendar 2.0</title>
+    <link rel="stylesheet" href="C.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Indie+Flower|Quicksand|Orbitron&display=swap');
+.container,.container2{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: auto;top: 0;right: 0;left: 0;bottom: 0;
+    transition: 1.5s;
+    transition-timing-function: ease;
+}
+.container2{
+    transform: translateX(100%);
+}
+.container-container{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: auto;top: 0;right: 0;left: 0;bottom: 0;
+    overflow: hidden;
+}
+.body-bottom{
+    position: absolute;
+    height: 90%;
+    width: 100%;
+    margin: auto;
+    bottom: 0;left: 0;right: 0;
+    background: linear-gradient( transparent, rgb(97, 184, 255), rgb(16, 24, 99));
+}
+.body{
+    position: absolute;
+    height: 70%;
+    width: 100%;
+    margin: auto;
+    bottom: 0;left: 0;right: 0;
+}
+.bg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    top: 0;bottom: 0;right: 0;left: 0;
+}
+.date, .day, .month{
+    position: absolute;
+    height: 100px;
+    text-align: center;
+    font-size: 60px;
+    font-family: 'Quicksand', sans-serif;
+    margin: auto;
+    bottom: 85px;
+    text-shadow: 0 0 20px rgb(0, 0, 0);
+}
+.day{
+    width: 73%;
+    left: 20px;
+    color: white;
+    bottom: 40px;
+    font-weight: 100;
+    font-size: 40px;
+    text-align: left;
+}
+.date{
+    width: 30%;
+    font-weight: 100;
+    color: white;
+    bottom: 60px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 100px;
+    right: 25px;
+}
+.month{
+    width: 60%;
+    color: white;
+    text-align: left;
+    height: 70px;
+    font-size: 25px;
+    bottom: -1%;
+    left: 21px;
+    font-weight: 100;
+}
+.quote{
+    position: absolute;
+    height: 40%;
+    width: 90%;
+    font-size: 45px;
+    top: 10%;
+    right: 6%;
+    color: white;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    text-shadow: 0 0 10px black;
+    z-index: +2;line-height: 55px;
+    font-weight: 600;
+}
+.nextButton{
+    z-index: +2;
+    position: absolute;
+    height: 25px;
+    margin: auto;
+    filter: invert(1);
+}
+#calendates {
+    text-shadow: none;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    text-align: center;
+    height: 50%;
+    width: 100%;
+    z-index: +2;
+    border-collapse: collapse;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "Quicksand", sans-serif;
+    bottom: 0;right: 0;left: 0;
+}
+.tdate{
+    position: relative;
+    height: 30px;
+    right: -15px;
+    width: 30px;
+    background: #fff;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+td{
+    height: 50px;
+    width: 50px;
+}
+th{
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 20px black;
+}
+td:nth-child(1),
+td:nth-child(7) {
+    color: rgb(255, 58, 58);
+}
+.prevButton{
+    position: absolute;
+    z-index: +2;
+    transform: rotate(-180deg);
+    height: 25px;
+    margin: auto;
+    filter: invert(1);
+    left: 0;right: 0;bottom: 25px;
+}
+.montharr{
+    position: absolute;
+    height: 40px;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    margin: auto;
+    right: 0;left: 0;
+    bottom: 65%;
+    color: white;
+    font-family: "Quicksand", sans-serif;
+    text-shadow: 0 0 10px black;
+}
+.time{
+    position: fixed;
+    font-family: "Orbitron", sans-serif;
+    color: white;
+    text-shadow: 0 0 20px black;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    font-size: 70px;
+    top: 5%;right: 0;left: 0;
+}
+.meridian{
+    position: absolute;
+    font-family: "Quicksand", sans-serif;
+    color: white;
+    text-shadow: 0 0 20px black;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    font-size: 20px;
+    top: 21%;right: 0;left: 0;
+}
+    </style>
+</head>
+
+<body>
+    <img style="z-index: -3;" src="https://source.unsplash.com/900x1500/?flower,seasons" alt="BackgroundImage"
+        class="bg">
+    <div class="container-container">
+        <div class="container">
+            <div class="quote"></div>
+            <div class="body">
+                <div class="day"></div>
+                <div class="date"></div>
+                <div class="month"></div>
+            </div>
+        </div>
+        <div class="container2">
+            <h1 class="time">4:24</h1>
+            <h4 class="meridian">P.M.</h4>
+            <table id="calendates" a>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <tr>
+                    <td id="d1"></td>
+                    <td id="d2"></td>
+                    <td id="d3"></td>
+                    <td id="d4"></td>
+                    <td id="d5"></td>
+                    <td id="d6"></td>
+                    <td id="d7"></td>
+                </tr>
+                <tr>
+                    <td id="d8"></td>
+                    <td id="d9"></td>
+                    <td id="d10"></td>
+                    <td id="d11"></td>
+                    <td id="d12"></td>
+                    <td id="d13"></td>
+                    <td id="d14"></td>
+                </tr>
+                <tr>
+                    <td id="d15"></td>
+                    <td id="d16"></td>
+                    <td id="d17"></td>
+                    <td id="d18"></td>
+                    <td id="d19"></td>
+                    <td id="d20"></td>
+                    <td id="d21"></td>
+                </tr>
+                <tr>
+                    <td id="d22"></td>
+                    <td id="d23"></td>
+                    <td id="d24"></td>
+                    <td id="d25"></td>
+                    <td id="d26"></td>
+                    <td id="d27"></td>
+                    <td id="d28"></td>
+                </tr>
+                <tr>
+                    <td id="d29"></td>
+                    <td id="d30"></td>
+                    <td id="d31"></td>
+                    <td id="d32"></td>
+                    <td id="d33"></td>
+                    <td id="d34"></td>
+                    <td id="d35"></td>
+                </tr>
+                <tr>
+                    <td id="d36"></td>
+                    <td id="d37"></td>
+                    <td id="d38"></td>
+                    <td id="d39"></td>
+                    <td id="d40"></td>
+                    <td id="d41"></td>
+                    <td id="d42"></td>
+                </tr>
+            </table>
+            <div class="montharr">
+                <img src="https://image.flaticon.com/icons/svg/60/60758.svg" onclick="p()"
+                    style="height: 20px;transform: rotate(180deg);filter: invert(1);"> December <img
+                    src="https://image.flaticon.com/icons/svg/60/60758.svg" onclick="n()"
+                    style="height: 20px;filter: invert(1);">
+            </div>
+            <img src="https://png.pngtree.com/svg/20170523/next_1178552.png" class="prevButton" onclick="prevChange()">
+        </div>
+        <div style="z-index: -2;" class="body-bottom"></div>
+    </div>
+    <script>
+        window.onload = function () {
+            var quotes = ["Life is just a chance to grow a soul.", "Only a life lived for others is a life worthwhile.", "Expect nothing, live frugally on surprise.", "Because I have loved life, I shall have no sorrow to die.", "People living deeply have no fear of death.", "Everything has beauty, but not everyone sees it.", "If you obey all the rules, you miss all the fun.", "Mistakes are part of the dues that one pays for a full life.", "The mind is a wonderful servant but a terrible master.", "Success is the best revenge for anything.", "Nothing will work unless you do.", "If you judge people you have no time to love them.", "Don't raise your voice. Improve your argument.", "Don't raise your voice. Improve your argument.", "No one has ever become poor by giving.", "Life is a process. We are a process. The universe is a process.", "Our lives are like a candle in the wind.", "Be a voice not an echo.", "It is not only necessary to love, it is necessary to say so.", "Whatever you do, do it well.", "What we think, we become.", "All limitations are self-imposed.", "Love For All, Hatred For None.", "Change the world by being yourself.", "Every moment is a fresh beginning.", "Never regret anything that made you smile.", "Die with memories, not dreams.", "Aspire to inspire before we expire.", "Everything you can imagine is real.", "Simplicity is the ultimate sophistication.", "Tough times never last but tough people do.", "Be so good they can’t ignore you.", "Yesterday you said tomorrow. Just do it.", "Reality is wrong, dreams are for real.", "Never let your emotions overpower your intelligence.", "There is no substitute for hard work.", "Try to be a rainbow in someone’s cloud.", "And still, I rise.", "The time is always right to do what is right.", "Strive for greatness.", "Turn your wounds into wisdom.", "Die with memories, not dreams", "Stay Hungry. Stay Foolish.", "When words fail, music speaks. ", "I have nothing to lose but something to gain.", "Embrace the glorious mess that you are.", "Let the beauty of what you love be what you do."],
+                days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            document.querySelector(".quote").innerHTML = "<img src=\"https://png.pngtree.com/svg/20170523/next_1178552.png\" class=\"nextButton\" onclick=\"change()\"><br><br>\"" + quotes[Math.floor(Math.random() * quotes.length)] + "\"";
+            document.querySelector(".day").innerHTML = days[new Date().getDay()];
+            document.querySelector(".date").innerHTML = new Date().getDate();
+            document.querySelector(".month").innerHTML = month[new Date().getMonth()] + ", " + new Date().getFullYear();
+        
+            setCalendar();
+        }
+        var i = 0;
+        function setTime(){
+            i++;
+            var f = (new Date().getHours() > 12) ? new Date().getHours() - 12 : new Date().getHours();
+            if (f < 10)
+                document.querySelector(".time").innerHTML = "0" + f + " : " + new Date().getMinutes();
+            if (new Date().getMinutes() < 10)
+                document.querySelector(".time").innerHTML = f + " : 0" + new Date().getMinutes();
+            if (new Date().getMinutes() < 10 && f < 10)
+                document.querySelector(".time").innerHTML = "0" + f + " : 0" + new Date().getMinutes();
+            if (new Date().getMinutes() > 10 && f > 10)
+                document.querySelector(".time").innerHTML = f + " : " + new Date().getMinutes();
+            document.querySelector(".meridian").innerHTML = (new Date().getHours() > 12) ? "P.M." : "A.M.";
+
+        }
+        setInterval(setTime, 1000);
+        var day;
+        var month = new Date().getMonth() - 1;
+        var year = new Date().getFullYear();
+        function setCalendar() {
+            const date = new Date(year, month + 1, 1);
+            var j = 1;
+            for (var i = 1; i <= 42; i++) {
+                document.getElementById("d" + i).innerHTML = "";
+            }
+            for (var i = date.getDay() + 1; j <= new Date(year, month + 2, 0).getDate(); i++) {
+                if (new Date().getDate() === j && new Date().getMonth() == month + 1)
+                    document.getElementById("d" + i).innerHTML = '<div class="tdate">' + j + '</div>';
+                else
+                    document.getElementById("d" + i).innerHTML = j;
+                j++;
+            }
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            document.querySelector(".montharr").innerHTML = '<img src="https://image.flaticon.com/icons/svg/60/60758.svg" onclick="p()" style="height: 20px;transform: rotate(180deg);filter: invert(1);"> ' + months[date.getMonth()] + ", " + date.getFullYear() + ' <img src="https://image.flaticon.com/icons/svg/60/60758.svg" onclick="n()" style="height: 20px;filter: invert(1);">';
+        }
+        function p() {
+            month--;
+            setCalendar();
+        }
+        function n() {
+            month++;
+            setCalendar();
+        }
+        function change() {
+            document.querySelector(".container").style.transform = "translateX(-100%)";
+            document.querySelector(".container2").style.transform = "translateX(0)";
+        }
+        function prevChange() {
+            document.querySelector(".container").style.transform = "translateX(0)";
+            document.querySelector(".container2").style.transform = "translateX(100%)";
+        }
+    </script>
+</body>
+
+</html>
